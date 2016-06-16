@@ -3,6 +3,7 @@
 namespace Otobank\Treasure\Tests;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
 use Otobank\Treasure\Treasure;
 use PHPUnit\Framework\TestCase;
 
@@ -16,6 +17,12 @@ class TreasureTest extends TestCase
         ]);
         $client = $this->createMock(Client::class);
 
+        $response = $this->createMock(Response::class);
+        $response->expects($this->once())
+            ->method('getStatusCode')
+            ->willReturn(200)
+        ;
+
         $client->expects($this->once())
             ->method('request')
             ->with(
@@ -26,6 +33,7 @@ class TreasureTest extends TestCase
                     'headers' => ['X-TD-Write-Key' => 'testkey'],
                 ])
             )
+            ->willReturn($response)
         ;
 
         $t->setClient($client);
