@@ -1,6 +1,8 @@
 TreasureData REST API Wrapper
 =============================
 
+[![Build Status](https://travis-ci.org/otobank/treasure-php.svg?branch=master)](https://travis-ci.org/otobank/treasure-php)
+
 Installation
 ------------
 
