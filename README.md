@@ -19,6 +19,8 @@ Usage
 
 require __DIR__.'/vendor/autoload.php';
 
+use Otobank\Treasure\Treasure;
+
 $treasure = new Treasure([
     'host' => 'in.treasuredata.com',
     'writeKey' => 'YOUR_WRITE_ONLY_APIKEY_IS_HERE',
