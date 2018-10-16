@@ -17,7 +17,7 @@ class Configuration
     private $database;
 
     /** @var string */
-    private $pathname = '/js/v3/event/';
+    private $pathname = '/postback/v3/event/';
 
     /**
      * @param array $options

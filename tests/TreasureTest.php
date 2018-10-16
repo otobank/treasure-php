@@ -27,7 +27,7 @@ class TreasureTest extends TestCase
             ->method('request')
             ->with(
                 $this->equalTo('POST'),
-                $this->equalTo('https://in.treasuredata.com/js/v3/event/testdb/table'),
+                $this->equalTo('https://in.treasuredata.com/postback/v3/event/testdb/table'),
                 $this->equalTo([
                     'json' => ['hoge' => 'fuga'],
                     'headers' => ['X-TD-Write-Key' => 'testkey'],
