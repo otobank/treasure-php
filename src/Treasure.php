@@ -35,6 +35,8 @@ class Treasure
     public function setClient(ClientInterface $client)
     {
         $this->client = $client;
+
+        return $this;
     }
 
     /**
