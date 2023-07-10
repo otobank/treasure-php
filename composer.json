@@ -6,6 +6,11 @@
             "Otobank\\Treasure\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Otobank\\Treasure\\Tests\\": "tests"
+        }
+    },
     "require": {
         "php": "^7.3 || ^8.0",
         "guzzlehttp/guzzle": "^7.2"
