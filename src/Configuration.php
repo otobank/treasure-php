@@ -34,7 +34,7 @@ class Configuration
     }
 
     /**
-     * @var bool
+     * @param  bool          $development
      *
      * @return Configuration
      */
@@ -54,7 +54,8 @@ class Configuration
     }
 
     /**
-     * @return string        $host
+     * @param  string        $host
+     *
      * @return Configuration
      */
     public function setHost($host)
