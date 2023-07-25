@@ -19,9 +19,6 @@ class Configuration
     /** @var string */
     private $pathname = '/postback/v3/event/';
 
-    /**
-     * @param array $options
-     */
     public function __construct(array $options = [])
     {
         foreach ($options as $key => $value) {
@@ -34,7 +31,7 @@ class Configuration
     }
 
     /**
-     * @param  bool          $development
+     * @param bool $development
      *
      * @return Configuration
      */
@@ -54,7 +51,7 @@ class Configuration
     }
 
     /**
-     * @param  string        $host
+     * @param string $host
      *
      * @return Configuration
      */

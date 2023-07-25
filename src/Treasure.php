@@ -28,8 +28,6 @@ class Treasure
     }
 
     /**
-     * @param ClientInterface $client
-     *
      * @return Treasure
      */
     public function setClient(ClientInterface $client)
@@ -41,7 +39,6 @@ class Treasure
 
     /**
      * @param string $table
-     * @param array  $record
      *
      * @return bool
      */
