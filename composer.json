@@ -27,7 +27,16 @@
         "bamarni/composer-bin-plugin": "^1.8"
     },
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "cs": [
+            "@putenv PHP_CS_FIXER_IGNORE_ENV=1",
+            "vendor-bin/tools/vendor/bin/php-cs-fixer fix --config .php-cs-fixer.dist.php --dry-run --diff -v src tests"
+        ],
+        "cs:fix": [
+            "@putenv PHP_CS_FIXER_IGNORE_ENV=1",
+            "vendor-bin/tools/vendor/bin/php-cs-fixer fix --config .php-cs-fixer.dist.php src tests"
+        ],
+        "test": "vendor/bin/phpunit",
+        "tests": ["@cs", "@test"]
     },
     "config": {
         "allow-plugins": {
