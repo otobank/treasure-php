@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Otobank\Treasure;
 
 class Configuration
@@ -19,6 +21,9 @@ class Configuration
     /** @var string */
     private $pathname = '/postback/v3/event/';
 
+    /**
+     * @param array<string, mixed> $options
+     */
     public function __construct(array $options = [])
     {
         foreach ($options as $key => $value) {
@@ -26,106 +31,66 @@ class Configuration
             if (!method_exists($this, $method)) {
                 throw new \InvalidArgumentException(sprintf('Unsupported options "%s"', $key));
             }
-            $this->$method($value);
+            $this->$method($value); // @phpstan-ignore-line
         }
     }
 
-    /**
-     * @param bool $development
-     *
-     * @return Configuration
-     */
-    public function setDevelopment($development)
+    public function setDevelopment(bool $development): self
     {
-        $this->development = $development ? true : false;
+        $this->development = $development;
 
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function getDevelopment()
+    public function getDevelopment(): bool
     {
         return $this->development;
     }
 
-    /**
-     * @param string $host
-     *
-     * @return Configuration
-     */
-    public function setHost($host)
+    public function setHost(string $host): self
     {
         $this->host = $host;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getHost()
+    public function getHost(): string
     {
         return $this->host;
     }
 
-    /**
-     * @var string
-     *
-     * @return Configuration
-     */
-    public function setWriteKey($writeKey)
+    public function setWriteKey(string $writeKey): self
     {
         $this->writeKey = $writeKey;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getWriteKey()
+    public function getWriteKey(): string
     {
         return $this->writeKey;
     }
 
-    /**
-     * @var string
-     *
-     * @return Configuration
-     */
-    public function setDatabase($database)
+    public function setDatabase(string $database): self
     {
         $this->database = $database;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getDatabase()
+    public function getDatabase(): string
     {
         return $this->database;
     }
 
-    /**
-     * @var string
-     *
-     * @return Configuration
-     */
-    public function setPathname($pathname)
+    public function setPathname(string $pathname): self
     {
         $this->pathname = $pathname;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getPathname()
+    public function getPathname(): string
     {
         return $this->pathname;
     }

@@ -10,6 +10,7 @@ return (new PhpCsFixer\Config())
             'identical' => false,
             'less_and_greater' => false,
         ],
+        'no_null_property_initialization' => false,
     ])
     ->setFinder($finder)
 ;

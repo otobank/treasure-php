@@ -6,3 +6,12 @@ parameters:
   paths:
     - src
     - tests
+
+  ignoreErrors:
+    # Allow some "Dynamic call to static method" in tests
+    # @see https://github.com/phpstan/phpstan-strict-rules/issues/36
+    - messages:
+        - '#Dynamic call to static method PHPUnit\\Framework\\TestCase::once\(\)\.#'
+        - '#Dynamic call to static method PHPUnit\\Framework\\Assert::equalTo\(\)\.#'
+      paths:
+        - tests
