@@ -35,8 +35,9 @@
             "@putenv PHP_CS_FIXER_IGNORE_ENV=1",
             "vendor-bin/tools/vendor/bin/php-cs-fixer fix --config .php-cs-fixer.dist.php src tests"
         ],
+        "sa": "@php -d memory_limit=-1 vendor-bin/tools/vendor/bin/phpstan analyse --configuration=phpstan.neon",
         "test": "vendor/bin/phpunit",
-        "tests": ["@cs", "@test"]
+        "tests": ["@cs", "@sa", "@test"]
     },
     "config": {
         "allow-plugins": {
