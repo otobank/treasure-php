@@ -1,7 +1,7 @@
 TreasureData REST API Wrapper
 =============================
 
-[![Build Status](https://travis-ci.org/otobank/treasure-php.svg?branch=master)](https://travis-ci.org/otobank/treasure-php)
+[![](https://github.com/otobank/treasure-php/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/otobank/treasure-php/actions/workflows/ci.yaml?query=branch:master)
 [![Latest Stable Version](https://poser.pugx.org/otobank/treasure/v/stable)](https://packagist.org/packages/otobank/treasure)
 [![Total Downloads](https://poser.pugx.org/otobank/treasure/downloads)](https://packagist.org/packages/otobank/treasure)
 [![Latest Unstable Version](https://poser.pugx.org/otobank/treasure/v/unstable)](https://packagist.org/packages/otobank/treasure)
