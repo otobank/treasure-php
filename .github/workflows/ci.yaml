@@ -1,0 +1,89 @@
+name: CI
+
+on: push
+
+jobs:
+  coding-standards:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+
+      - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+          composer bin all install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Execute checks
+        run: composer cs
+
+  static-analysis:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        php-version:
+          - 7.2
+          - 7.3
+          - 7.4
+          - 8.0
+          - 8.1
+          - 8.2
+
+    steps:
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+
+      - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+          composer bin all install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Execute checks
+        run: composer sa
+
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        php-version:
+          - 7.2
+          - 7.3
+          - 7.4
+          - 8.0
+          - 8.1
+          - 8.2
+        dependencies:
+          - lowest
+          - highest
+
+    steps:
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+
+      - uses: actions/checkout@v3
+
+      - name: Install lowest dependencies
+        if: ${{ matrix.dependencies == 'lowest' }}
+        run: |
+          composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --prefer-lowest
+          # phpunit too old cannot be run on PHP 8.1+
+          composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist phpunit/phpunit
+
+      - name: Install highest dependencies
+        if: ${{ matrix.dependencies == 'highest' }}
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Execute tests
+        run: composer test

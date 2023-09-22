@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Otobank\Treasure;
 
 use GuzzleHttp\Client;
@@ -10,11 +12,11 @@ class Treasure
     /** @var Configuration */
     private $config;
 
-    /** @var ClientInterface */
-    private $client;
+    /** @var ClientInterface|null */
+    private $client = null;
 
     /**
-     * @param Configuration|array $config
+     * @param Configuration|array<string, mixed>|mixed $config
      */
     public function __construct($config = [])
     {
@@ -27,12 +29,7 @@ class Treasure
         }
     }
 
-    /**
-     * @param ClientInterface $client
-     *
-     * @return Treasure
-     */
-    public function setClient(ClientInterface $client)
+    public function setClient(ClientInterface $client): self
     {
         $this->client = $client;
 
@@ -40,14 +37,11 @@ class Treasure
     }
 
     /**
-     * @param string $table
-     * @param array  $record
-     *
-     * @return bool
+     * @param array<mixed> $record
      */
-    public function addRecord($table, array $record = [])
+    public function addRecord(string $table, array $record = []): bool
     {
-        if (!$this->client) {
+        if ($this->client === null) {
             $this->client = $this->createClient();
         }
 
@@ -68,10 +62,7 @@ class Treasure
         return $response->getStatusCode() === 200;
     }
 
-    /**
-     * @return ClientInterface
-     */
-    private function createClient()
+    private function createClient(): ClientInterface
     {
         return new Client();
     }

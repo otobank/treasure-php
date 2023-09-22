@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Otobank\Treasure\Tests;
 
 use GuzzleHttp\Client;
@@ -9,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class TreasureTest extends TestCase
 {
-    public function testDefaultConfiguration()
+    public function testDefaultConfiguration(): void
     {
         $t = new Treasure([
             'database' => 'testdb',
